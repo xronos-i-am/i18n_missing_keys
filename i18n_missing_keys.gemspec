@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "i18n_missing_keys"
-  s.version = "0.1.21"
+  s.version = "0.1.22"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ideadapt"]
@@ -18,7 +18,8 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "lib/i18n_missing_keys.rb",
-    "lib/i18n_missing_keys/railtie.rb"
+    "lib/i18n_missing_keys/railtie.rb",
+    "lib/tasks/i18n_missing_keys.rake"
   ]
   s.homepage = "http://github.com/renuo/i18n_missing_keys"
   s.licenses = ["MIT"]
