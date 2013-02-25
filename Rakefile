@@ -20,7 +20,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Rake task to find localization keys missing from different locales in a Rails application using the I18n::Simple backend.}
   gem.email = "ueli.kunz@renuo.ch"
   gem.authors = ["ideadapt"]
-  gem.files = Dir.glob('lib/**/*.rb')
+  gem.files = Dir.glob('lib/**/*.{rb,rake}')
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
