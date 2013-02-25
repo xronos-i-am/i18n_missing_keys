@@ -13,7 +13,6 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "i18n_missing_keys"
   gem.homepage = "http://github.com/renuo/i18n_missing_keys"
   gem.license = "MIT"
@@ -29,17 +28,20 @@ Jeweler::RubygemsDotOrgTasks.new
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
+  test.pattern = 'test/**/*.rb'
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
+#require 'simplecov'
+#Rake::TestTask.new(:test) do |test|
+#  #SimpleCov.command_name 'test:units'
+#  SimpleCov.start do
+#    add_filter 'i18n_'
+#  end
+#  test.libs << 'lib' << 'test'
+#  test.pattern = 'test/**/*.rb'
+#  test.verbose = true
+#end
 
 task :default => :test
 
@@ -50,5 +52,5 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "i18n_missing_keys #{version}"
   rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+  rdoc.rdoc_files.include('lib/**/*.rake')
 end

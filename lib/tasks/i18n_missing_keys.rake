@@ -1,5 +1,3 @@
-# Fetched from: http://github.com/koppen/i18n_missing_keys.git
-
 namespace :i18n do
   desc "Find and list translation keys that do not exist in all locales"
   task :missing_keys => :environment do

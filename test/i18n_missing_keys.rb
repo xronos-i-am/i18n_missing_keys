@@ -6,7 +6,7 @@ require 'rubygems' rescue ''
 require 'test/unit'
 require 'rake'
 require 'mocha'
-require 'activesupport'
+require 'active_support'
 require 'shoulda'
 require 'fileutils'
 
