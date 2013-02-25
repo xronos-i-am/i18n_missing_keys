@@ -17,7 +17,8 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    "lib/tasks/i18n_missing_keys.rake"
+    "lib/i18n_missing_keys.rb",
+    "lib/i18n_missing_keys/railtie.rb"
   ]
   s.homepage = "http://github.com/renuo/i18n_missing_keys"
   s.licenses = ["MIT"]
