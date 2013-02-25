@@ -1,5 +1,13 @@
 = i18n_missing_keys
-
+Usage: rake i18n:missing_keys
+You can create a config/ignore_missing_keys.yml to specify keys that should not be reported if they are missing. e.g.
+<code>
+en:
+  - 'activerecord\.*'
+  - "false"
+  - "true"
+it:
+</code>
 
 == Contributing to i18n_missing_keys
  

@@ -1,5 +1,5 @@
 namespace :i18n do
-  desc "Find and list translation keys that do not exist in all locales"
+  desc 'Find and list translation keys that do not exist in all locales'
   task :missing_keys => :environment do
     finder = MissingKeysFinder.new(I18n.backend)
     finder.find_missing_keys
@@ -87,7 +87,6 @@ class MissingKeysFinder
     return full_keys
   end
 
-  # Returns true if key exists in the given locale
   def key_exists?(key, locale)
     I18n.locale = locale
     I18n.translate(key, :raise => true)
@@ -108,7 +107,7 @@ class MissingKeysFinder
     begin
       @yaml = YAML.load_file(File.join(Rails.root, 'config', 'ignore_missing_keys.yml'))
     rescue => e
-      STDERR.puts "No ignore_missing_keys.yml config file."
+      STDERR.puts 'No config/ignore_missing_keys.yml file.'
     end
 
   end

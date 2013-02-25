@@ -1,5 +1,3 @@
-# Utilized with rake i18n:missing_keys
-
 en:
   - 'activerecord\.*'
   - "false"
