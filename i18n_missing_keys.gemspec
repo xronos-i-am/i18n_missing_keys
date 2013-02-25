@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "i18n_missing_keys"
-  s.version = "0.1.25"
+  s.version = "0.1.26"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ideadapt"]
@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    "config/ignore_missing_keys.yml",
     "lib/i18n_missing_keys.rb",
     "lib/i18n_missing_keys/railtie.rb",
     "lib/tasks/i18n_missing_keys.rake"
