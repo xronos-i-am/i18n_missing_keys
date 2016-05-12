@@ -10,6 +10,7 @@ end
 class MissingKeysFinder
 
   def initialize(backend)
+    @disable_fallback = ENV['DISABLE_FALLBACK']
     @backend = backend
     self.load_config
     self.load_translations
@@ -89,7 +90,12 @@ class MissingKeysFinder
 
   def key_exists?(key, locale)
     I18n.locale = locale
-    I18n.translate(key, :raise => true)
+    if @disable_fallback
+      I18n.translate(key, :raise => true, :fallback => true)
+    else
+      I18n.translate(key, :raise => true)
+
+    end
     return true
   rescue I18n::MissingInterpolationArgument
     return true
