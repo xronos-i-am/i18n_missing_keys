@@ -1,7 +1,7 @@
 namespace :i18n do
   desc 'Find and list translation keys that do not exist in all locales'
-  task :missing_keys => :environment do
-    finder = MissingKeysFinder.new(I18n.backend)
+  task :missing_keys, [:locales] => :environment do |task, args|
+    finder = MissingKeysFinder.new(I18n.backend, args[:locales])
     finder.find_missing_keys
   end
 end
@@ -9,9 +9,10 @@ end
 
 class MissingKeysFinder
 
-  def initialize(backend)
+  def initialize(backend, locales)
     @disable_fallback = ENV['DISABLE_FALLBACK']
     @backend = backend
+    @locales = locales
     self.load_config
     self.load_translations
   end
@@ -64,7 +65,12 @@ class MissingKeysFinder
   def output_missing_keys(missing_keys)
     puts "#{missing_keys.size} #{missing_keys.size == 1 ? 'key is missing' : 'keys are missing'} from one or more locales:"
     missing_keys.keys.sort.each do |key|
-      puts "'#{key}': Missing from #{missing_keys[key].collect(&:inspect).join(', ')}"
+      locales = missing_keys[key].collect(&:to_s)
+      if locales.size > 1
+        puts "#{key}: \'#{I18n.t(key, locale: I18n.default_locale)}\', missing from #{locales.join(', ')}"
+      else
+        puts "#{key}: \'#{I18n.t(key, locale: I18n.default_locale, default: I18n.t(key, locale: :en))}\'"
+      end
     end
   end
 
@@ -90,7 +96,12 @@ class MissingKeysFinder
 
   def key_exists?(key, locale)
     return true if %w(i18n.plural.rule i18n.transliterate.rule).include?(key)
+    unless @locales.nil?
+      return true unless @locales.split(',').include?(locale.to_s)
+    end
+
     I18n.locale = locale
+
     if @disable_fallback
       I18n.translate(key, :raise => true, :fallback => true)
     else
