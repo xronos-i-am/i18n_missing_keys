@@ -89,6 +89,7 @@ class MissingKeysFinder
   end
 
   def key_exists?(key, locale)
+    return true if %w(i18n.plural.rule i18n.transliterate.rule).include?(key)
     I18n.locale = locale
     if @disable_fallback
       I18n.translate(key, :raise => true, :fallback => true)
